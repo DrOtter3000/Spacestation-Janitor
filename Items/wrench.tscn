@@ -1,0 +1,151 @@
+[gd_scene load_steps=11 format=3 uid="uid://cs3kcf0ecut31"]
+
+[ext_resource type="Script" path="res://Items/wrench.gd" id="1_aqltw"]
+[ext_resource type="Material" uid="uid://deyvqqhdj8ydn" path="res://GFX/Materials/tool_material.tres" id="1_gqqhi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7p321"]
+size = Vector3(0.015, 0.3, 0.025)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7qbjd"]
+size = Vector3(0.018, 0.05, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x5hl5"]
+size = Vector3(0.01, 0.14, 0.018)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tb114"]
+size = Vector3(0.01, 0.06, 0.018)
+
+[sub_resource type="Animation" id="Animation_4o2nu"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.015, -0.009), Vector3(0, 0.007, 0.005)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.174533, 0, 0), Vector3(0.0698132, 0, 0.122173)]
+}
+
+[sub_resource type="Animation" id="Animation_ws3c6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xuwkc"]
+resource_name = "attack"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.240087, 0.322569, -0.31509), Vector3(-0.111296, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.4001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-3.89006e-08, -0.915233, -0.515204), Vector3(0.256021, -0.234255, 0.605681), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"idle_animation"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fcbik"]
+_data = {
+"RESET": SubResource("Animation_ws3c6"),
+"attack": SubResource("Animation_xuwkc"),
+"idle": SubResource("Animation_4o2nu")
+}
+
+[node name="Wrench" type="Node3D" groups=["Weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_aqltw")
+
+[node name="Handle" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7p321")
+surface_material_override/0 = ExtResource("1_gqqhi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000388175, 0.105278, -0.0228351)
+mesh = SubResource("BoxMesh_7qbjd")
+surface_material_override/0 = ExtResource("1_gqqhi")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.129045, -0.0316482)
+mesh = SubResource("BoxMesh_x5hl5")
+surface_material_override/0 = ExtResource("1_gqqhi")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.195544, -0.0105651)
+mesh = SubResource("BoxMesh_tb114")
+surface_material_override/0 = ExtResource("1_gqqhi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_fcbik")
+}

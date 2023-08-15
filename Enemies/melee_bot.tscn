@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjw5n1oijkjtg"]
+
+[ext_resource type="Script" path="res://Enemies/melee_bot.gd" id="1_oqgeb"]
+[ext_resource type="PackedScene" uid="uid://cmttqgob2ss8t" path="res://Items/mop.tscn" id="2_8w5ws"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iaccr"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_apfr4"]
+
+[node name="MeleeBot" type="CharacterBody3D" groups=["Enemies"]]
+script = ExtResource("1_oqgeb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_iaccr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_apfr4")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Mop" parent="." instance=ExtResource("2_8w5ws")]
+transform = Transform3D(0.9874, -9.48994e-09, -0.158244, -0.155002, 0.201386, -0.96717, 0.0318681, 0.979512, 0.198848, 0.350805, 0.150729, 0)

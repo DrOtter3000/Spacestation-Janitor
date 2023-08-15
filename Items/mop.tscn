@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmttqgob2ss8t"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qk2l7"]
+top_radius = 0.02
+bottom_radius = 0.02
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mldbw"]
+radius = 0.09
+height = 0.4
+
+[node name="Mop" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_qk2l7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.13446, 0)
+mesh = SubResource("CapsuleMesh_mldbw")
